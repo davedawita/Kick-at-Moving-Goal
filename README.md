@@ -11,8 +11,8 @@ This game will enable anyone and especially a soccer player to exercise free kic
 Wireframe
 
 Before the actual coding, a wireframe was developed using Figma as shown below:
-![Kick on Moving Goal Wireframe_page1](https://github.com/davedawita/Kick-at-Moving-Goal/assets/155693018/1e6eb007-cec2-4536-9463-2307a5400114)
 
+![image](https://github.com/davedawita/Kick-at-Moving-Goal/assets/155693018/03fc07fb-7200-4e01-8692-c2c4e8db4b99)
 
 
 
