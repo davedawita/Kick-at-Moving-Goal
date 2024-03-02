@@ -20,23 +20,33 @@ file:///home/dawit/Desktop/Kick%20on%20Moving%20Goal%20Wireframe_page1.jpg
 User Stories
     • As a soccer ball player, I need to exercise free kicks with a game app on my i-phone so that I can be mentally ready to move fast in my real world games.
     • As a player, I need the goal to move sideways so that I can improve my focus in a soccer game.
+    • As a player, I also need to get inspired by a goal scoring system in the app.
+    
 Programming Skills Utilized
+
 This game is built by using HTML, CSS, and JavaScript.
+
 Installation Instructions
-Please use the link below to install the app. Enjoy the game!
-  - Kick at The Goal Game
-- If you are on a browser, use of Google chrome is highly recommended.
+
+ - Please use the link below to install the app. Enjoy the game!
+          Kick at The Goal Game
+ - If you are on a browser, use of Google chrome is highly recommended.
+  
 MVP (Minimum Viable Product) Goals
     • As a player, I want to see a modal with game instructions
     • As a player, I see the goal target moving laterally
     • As a player, I want to be able trigger a kick towards the goal
-    • As a player, I want to keep t![Kick on Moving Goal Wireframe_page1](https://github.com/davedawita/Kick-at-Moving-Goal/assets/155693018/82e0876a-34a5-48f2-af5f-fd58e3ce93ce)
-rack of how many goals I and my opponent scored
+    • As a player, I want to keep track of how many goals I and my opponent scored
     • As a player, I want to see animation declaring who the winner is
     • As a player, I want to see the time given for me and my opponent to reach at a decision to kick the ball
+  
 Troubleshooting
+
 Please click the reset button to restart the game.
+
 Forthcoming Features
+
 This game may include the tooltips feature in the future.
+
 Unsolved Problems
 None.
