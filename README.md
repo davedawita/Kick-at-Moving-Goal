@@ -9,9 +9,6 @@ Before the actual coding, a wireframe was developed using Figma as shown below:
 
 [Kick_on_Moving_Goal_Wireframe.pdf](https://github.com/davedawita/Kick-at-Moving-Goal/files/14467410/Kick_on_Moving_Goal_Wireframe.pdf)
 
-
-
-
 User Stories
     • As a soccer ball player, I need to exercise free kicks with a game app on my i-phone so that I can be mentally ready to move fast in my real world games.
     • As a player, I need the goal to move sideways so that I can improve my focus in a soccer game.
