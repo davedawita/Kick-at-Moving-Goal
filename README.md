@@ -11,10 +11,7 @@ This game will enable anyone and especially a soccer player to exercise free kic
 Wireframe
 
 Before the actual coding, a wireframe was developed using Figma as shown below:
-
 ![image](https://github.com/davedawita/Kick-at-Moving-Goal/assets/155693018/03fc07fb-7200-4e01-8692-c2c4e8db4b99)
-
-
 
 User Stories
     • As a soccer ball player, I need to exercise free kicks with a game app on my i-phone so that I can be mentally ready to move fast in my real world games.
