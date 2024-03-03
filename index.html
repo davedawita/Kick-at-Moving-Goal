@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kick at Moving Goal</title>  
+  <link href="styles.css" rel="stylesheet"/>
+  <script src="app.js" type="module"></script>
+</head>
+
+<body>
+  
+  <!-- Start creating title -->
+  <header><h1>Kick at Moving Goal Game</h1></header>
+
+  <!-- creating playing field and goal -->
+  <Section class="field">
+    <div>
+      <p id = playField></p>
+    </div>
+    <div id="Goal"><img src="goal.jpg"/></div>
+    </div>
+    
+  </Section>
+
+  <!-- creating soccer ball and player image -->
+
+<!-- creating timer and scores for each player -->
+</div>
+<div class="timer">Timer
+  <div id="clock">Clock</div>
+</div>
+
+<div class="scores">
+  <div class="p1">
+    <p id="p1">Player 1 Score</p>
+    <p id="p1-score">Score</p>
+  </div>
+  <div class="p2">
+    <p id="p2">Player 2 Score</p>
+    <p id="p2-score">Score</p>
+  </div>   
+
+
+  <!-- creating buttons -->
+  <button id="startGame">Start Game</button>
+  <button id="showHide">Show/Hide Instruction</button>
+  <button id="reset">Reset</button>
+  <button id="next">Next Level</button>
+  <container class="modalContainer">
+    <div class="modal">
+      <ul>
+        <li>Click the start game button and start kicking the ball by clicking on the ball within 5 seconds.</li>
+        <li>If you stayed longer, it will be the turn of your opponent/opponents.</li>
+        <li>Any player that scores 10 goals will be the winner!</li>
+        <li>If both players score 10 after taking all their turns, it will be a tie.</li>
+        <li>The game can be reset if any player's score is less than or equal to 5. If not, the game shall continue to the end.</li>
+        <li>If any player wants to quit the game, the opponent will be the winner.</li>
+      </ul>
+      <div class="closeBtn">X</div>
+    </div>
+  </container>
+
+  <!-- creating moving ball -->
+  <div id="ball"></div>
+   
+</body>
+</html>
