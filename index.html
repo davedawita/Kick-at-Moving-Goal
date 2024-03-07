@@ -4,26 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kick at Moving Goal</title>  
-  <link href="styles.css" rel="stylesheet"/>
-  <script src="app.js" type="module"></script>
+  <link href="styles.css" rel="stylesheet"/>  
 </head>
 
 <body>
   
   <!-- Start creating title -->
   <header><h1>Kick at Moving Goal Game</h1></header>
-
-  <!-- creating playing field and goal -->
-  <Section class="field">
-    <div>
-      <p id = playField></p>
-    </div>
-    <div id="Goal"><img src="goal.jpg"/></div>
-    </div>
-    
-  </Section>
-
-  <!-- creating soccer ball and player image -->
 
 <!-- creating timer and scores for each player -->
 </div>
@@ -50,19 +37,30 @@
   <container class="modalContainer">
     <div class="modal">
       <ul>
-        <li>Click the start game button and start kicking the ball by clicking on the ball within 5 seconds.</li>
+        <li>Click the start game button and start kicking the ball by pressing space bar within 5 seconds.</li>
         <li>If you stayed longer, it will be the turn of your opponent/opponents.</li>
         <li>Any player that scores 10 goals will be the winner!</li>
         <li>If both players score 10 after taking all their turns, it will be a tie.</li>
         <li>The game can be reset if any player's score is less than or equal to 5. If not, the game shall continue to the end.</li>
         <li>If any player wants to quit the game, the opponent will be the winner.</li>
+        <li>Click the "Next Level" button if you need to increase speed of moving goal</li>
       </ul>
       <div class="closeBtn">X</div>
     </div>
   </container>
 
-  <!-- creating moving ball -->
-  <div id="ball"></div>
-   
+
+<!-- creating playing field and goal -->
+<Section class="field">
+  <div>
+    <canvas id="canvas"></canvas> 
+    <!-- Here, I included canvas. You can refer: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial-->
+  <!-- </div>
+  <div id="Goal"><img src="goal.jpg"/></div>
+  </div> -->
+  
+</Section>
+
+  <script src="app.js" type="module"></script>
 </body>
 </html>
