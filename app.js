@@ -88,8 +88,6 @@ function resetGame() {
 }
 resetGame()
 
-
-
   //To MOVE THE GOAL sideways:
 
   let goal;
@@ -127,53 +125,64 @@ nextLevel()
 //THE GAMELOOP - The ENGINE for the game: Draws the ball, the players, and the goal on canvas; Tracks score of each player: 
 
   const gameLoop = () => {    
-    ctx.fillStyle = "green"
+    ctx.fillStyle = "green"    //This is to prepare the playing field or canvas.
     ctx.fillRect(0, 0, canvas.width, canvas.height)
-    ballController.draw(ctx)   //This is to draw our ball
+    
+    ballController.draw(ctx)   //This is to draw the ball
     ballController.isBallOffScreen(ctx)
-    player1.draw(ctx)    //This is to draw the first player using the method of our class. He has a brown color.
-    // player2.draw(ctx)  //this is to draw the second player. He has a blue color.
-    goal.draw(ctx)
+    goal.draw(ctx)      //This is to draw the goal on canvas.
 
+    // To make turn for each player:
+
+    
+    player1.draw(ctx)    //This is to draw the first player using the method of our class. He has a brown color.
+    
+
+    // let currentPlayer = playerOne 
+    // e.target.textContent = currentPlayer.totalScore   //Here, I searched and found that evt.target is a reference to the object onto which the event was dispatched. https://developer.mozilla.org/en-US/docs/Web/API/Event/target
+    
+    // const playersTurn = (e) => {
+    //   if(currentPlayer === playerOne) {
+    //     currentPlayer === playerTwo        
+    //     evt.target.textContent = currentPlayer.totalScore 
+
+    //   } else {
+    //   player2.draw(ctx)  //this is to draw the second player. He has a blue color.
+    //     currentPlayer === playerOne
+    //     e.target.textContent = currentPlayer.totalScore
+    //   }
+    // }
+    // playersTurn()   
+    
+    //To record score of each player & activate taking turns between players:
+   
     let scoreOne = 0
     let scoreTwo = 0
+    let currentPlayer = playerOne               //This shows that playerOne starts the game.
     const scoringOfResults = (sprite) => {
-      if (ballController.collideWith(sprite)) {
-        scoreOne += 1
-        scoreTwo += 1
+      if (ballController.collideWith(sprite) && currentPlayer === playerOne) {
+        timer(5)    //This is to trigger the 5 second timer before the first kick
+        scoreOne += 1        
         playerOne.totalScore += scoreOne
-        p1Score.innerHTML = playerOne.totalScore 
-        // playerTwo.totalScore += scoreTwo
-        // p2Score.innerHTML = playerTwo.totalScore        
-      }     
-    }  
+        p1Score.innerHTML = playerOne.totalScore
+         
+                       
+      } if (ballController.collideWith(sprite) && currentPlayer === playerTwo) {
+          timer(5)     //This is to run the 5 second timer only after the first player kicks the ball.
+          player2.draw(ctx)  //this is to draw the second player. He has a blue color.
+          scoreTwo += 1
+          playerTwo.totalScore += scoreTwo
+          p2Score.innerHTML = playerTwo.totalScore 
+        } else {
+          // timer(5)
+        }  
+      }
+    
     scoringOfResults(goal)    
   }
 
   setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second.
   
-  // To make turn for each player:
-  
-  //   function playerControls(e) {
-  //     let currentPlayer
-  //     currentPlayer = player1
-  //     e.target.textContent = currentPlayer.totalScore;
-  //     if (currentPlayer === player1) {
-  //       currentPlayer = player2
-  //       e.target.textContent = currentPlayer.totalScore
-  //     } else {
-  //       currentPlayer = player1
-  //       e.target.textContent = currentPlayer.totalScore
-  //     }
-  //   }
-  
-  //   return {
-  //     playerControls
-  //   }
-  // })
-  // playGame();
-
-
   //WIN scenario:
 
   const resultDisplay = document.querySelector('#gameResult')
@@ -206,76 +215,19 @@ nextLevel()
   endOfGame()
 
 
+ //To create a TIMER that counts down from 5 seconds and stop each player from kicking the ball and turning the chance to the other player:
 
-// Adding Levels:
+  let timerClock = document.querySelector('#clock')
+  let timer = (t) => {
+    if (t === -1) {    // Here, when I put t === 0, the countdown timer stops at 1 second.
+      return    //This stops the timer from going less than zero in to negative seconds.
+    }
+    timerClock.innerHTML = t
+    return setTimeout(() => {
+      timer(--t)
+    }, 1000)        //Here, I give the setTimeout of 1000ms for reducing the time.
+  }
+  timer(5)
 
-// window.addEventListener('load', init,);
-// const levels = {
-//   easy: 5,
-//   medium: 3,
-//   hard: 2,
-// }
-
-// //to cchange level
-// const currentLevel = levels.easy;
-
-// let time = currentLevel;
-// let score = 0;
-// let isPLaying;//initalzies game...true if game is on false if game is off
-
-
-
-  //To create a clock that counts down from 5 seconds and stop each player from kicking the ball and turning the chance to the other player:
-
-  // let timeElm = document.querySelector('#p1-score')
-  // let timer = (t) => {
-  //   if (t === 0) {
-  //     return
-  //   }
-  //   timeElm.innerHTML = t
-  //   return setTimeout(() => {
-  //     timer(--t)
-  //   }, 1000)        //Here, I give the setTimeout of 1000ms for reducing the time.
-  // }
-  // timer(5)
-
-// TIMER LOGIC
-
-// const startingMinutes = .25
-// let time = startingMinutes * 60
-// let timerId
-// let square
-
-// function countDown() {
-
-//   let minutes = Math.floor(time / 60)
-//   let seconds = time % 60
-//   time--
-//   console.log(minutes, 'minutes:', seconds, 'seconds')
-
-
-//   if (time <= 0) {
-//     checkForWin()
-//     gameOver()
-//   }
-
-//   countdown.innerHTML = minutes + ' minutes ' + ': ' + seconds + ' seconds '
-// }
-
-// Countdown timer:
-
-//Countdown Timer
-// function countdown() {
-//   //Make sure time is not run out
-//   if(time > 0) {
-//       //Decrease time
-//       time--;
-//   }else if(time === 0) {
-//       //Game Over
-//       isPLaying = false;
-//   }
-//   //Show time
-//   timeDisplay.innerHTML = time;
-// }
 
 

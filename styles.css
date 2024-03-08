@@ -252,6 +252,10 @@ ul {
   100% {opacity:20;}
 }
 
+#clock {
+  color: green;
+}
+
 
 @media (Max-width: 500px) {
 
