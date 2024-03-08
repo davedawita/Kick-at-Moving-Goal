@@ -43,7 +43,7 @@ Please click the reset button to restart the game.
 
 Forthcoming Features
 
-This game may include the tooltips feature in the future.
+This game may include the tooltips feature in the future. A dropdown menu for different levels of difficulty can be added when the 'Next Level' button is clicked in the future.
 
 Unsolved Problems
 None.
