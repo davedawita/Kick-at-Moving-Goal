@@ -4,8 +4,9 @@ This is a 2D soccer game of free kicks with two players taking turns. One player
 
 Description
 
-The moving speed of the goal will get faster as players go to the next level. Number of players is limited to be two. Scores are displayed on the left side as shown in the proposed wire frame below. The maximum score will be 10. 
-Playing Instructions: Click the start game button and start kicking the ball within 5 seconds, If you stayed longer, it will be the turn of your opponent/opponents. Any player that scores 10 goals will be the winner! If both players score 10 after taking all their turns, it will be a tie. The game can be reset if both player's score is less than or equal to 5. If not, the game shall continue to the end. If any player wants to quit the game, the opponent will be the winner. The game will have a timer that limits every turn a player will have.
+The start button is functional only when the game starts and the game is over. There are two levels in the game. The moving speed of the goal will get faster if players click next level. Number of players is limited to be two. Scores are displayed on the left side as shown in the proposed wire frame below. The maximum score will be 10. 
+
+Playing Instructions: Click the start game button and start kicking the ball within 5 seconds, If you stayed longer, it will be the turn of your opponent/opponents. Any player that scores 10 goals will be the winner! If both players score 10 after taking all their turns, it will be a tie. The game can be reset if both player's score is less than or equal to 5. If not, the game shall continue to the end. If any player wants to quit the game, the opponent will be the winner. The game will have a timer that limits every turn a player will have. 
 This game will enable anyone and especially a soccer player to exercise free kicks with a game app so that they can be mentally ready to move fast in the real world soccer game. Give it a try and good luck!
 
 Wireframe
@@ -39,7 +40,7 @@ MVP (Minimum Viable Product) Goals
   
 Troubleshooting
 
-Please click the reset button to restart the game.
+Please click the reset button to restart the game. If any player wants to reset the game and to interchangeable use the 'Start Game' button, it will not work. The purpose of the reset button is to enable that functionality.
 
 Forthcoming Features
 
