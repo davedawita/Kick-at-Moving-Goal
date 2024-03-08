@@ -21,11 +21,11 @@
 <div class="scores">
   <div class="p1">
     <p id="p1">Player 1 Score</p>
-    <p id="p1-score">Score</p>
+    <p id="p1-score" type="number" value="0">0</p>
   </div>
   <div class="p2">
     <p id="p2">Player 2 Score</p>
-    <p id="p2-score">Score</p>
+    <p id="p2-score" type="number" value="0">0</p>
   </div>   
 
 
@@ -42,7 +42,7 @@
         <li>Any player that scores 10 goals will be the winner!</li>
         <li>If both players score 10 after taking all their turns, it will be a tie.</li>
         <li>The game can be reset if any player's score is less than or equal to 5. If not, the game shall continue to the end.</li>
-        <li>If any player wants to quit the game, the opponent will be the winner.</li>
+        <li>If any player wants to quit the game before the end or without reset, please know that the opponent is the winner.</li>
         <li>Click the "Next Level" button if you need to increase speed of moving goal</li>
       </ul>
       <div class="closeBtn">X</div>
@@ -60,6 +60,8 @@
   </div> -->
   
 </Section>
+
+<div id ='gameResult'></div>
 
   <script src="app.js" type="module"></script>
 </body>

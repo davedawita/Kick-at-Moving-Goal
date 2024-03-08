@@ -1,4 +1,4 @@
-export class Player2 {
+export default class Player2 {
   constructor(x,y,ballController) {
     this.x = x
     this.y = y
@@ -68,11 +68,10 @@ shoot(){
   if (this.shootPressed) {
     console.log("shoot")
     const speed = 5
-    const delay = 7
-    const score = 1
+    const delay = 7    
     const ballX = this.x + this.width/2  //This is to fix postion of ball before each kick.
     const ballY = this.y + this.height * 1.4              //This is to fix postion of ball before each kick.
-    this.ballController.shoot(ballX,ballY,speed,score,delay)
+    this.ballController.shoot(ballX,ballY,speed,delay)
 
   }
 }    

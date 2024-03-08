@@ -1,10 +1,7 @@
-import Player from "./player1.js"   //This is to import from player.js file I created. Note that this import has to be here on top of teh module to be functional. Note also that the capital letter 'P" has to be caps to import the class properly.
-
 import BallController from "./ballController.js" //This is to import from ballController.js file I created.
-import {Player2} from "./player2.js"
-import Player1 from "./player1.js"
-
-// import Goal from "./goal.js"  //This is to import from goal.js file.
+import Player2 from "./player2.js"  //This is to import from player2.js file I created. Note that this import has to be here on top of teh module to be functional. Note also that the capital letter 'P" has to be caps to import the class properly.
+import Player1 from "./player1.js"   //Same as above.
+import Goal from "./goal.js"          //Same as above.
   
   // To create modal for show/hide instruction button:
 
@@ -22,13 +19,6 @@ import Player1 from "./player1.js"
     modalContainer.classList.remove('show')
   })
 
-
-
-// const startGame = document.querySelector('#startGame')
-//   startGame.addEventListener('click', animate)
-
-
-
 //To draw the player on the canvas, I used class. I preferred to write the class code on another js file export it there and import it here.
   const canvas = document.querySelector("#canvas")
 
@@ -36,159 +26,182 @@ import Player1 from "./player1.js"
   canvas.width = 400
   canvas.height = 400   // Then, I go back to css and style the canvas.
 
-
-  // const startGame = () => {    
-  //     const clickStartGame =  document.querySelector('#startGame').addEventListener('click', function () {
-  //     gameLoop()
-  //     })
-  //     If (clickStartGame = true) {
-
-  //     }
-
-  //   }
-  
-  // startGame()
-
   const ballController = new BallController(canvas)
   const player1  = new Player1 (canvas.width / 2.2, canvas.height / 1.15, ballController) //Instantiating from the class-Player. Here, I am fixing the postion of player1 in relation to the canvas by dividing the canvas width and height by factors.
   const player2  = new Player2(canvas.width / 2.2, canvas.height / 1.15, ballController)  //Note that position of player1 and player2 on the play field (canvas) are the same.
-  
-  let players = [player1, player2]
 
-  const gameLoop = () => {    
-    ctx.fillStyle = "green"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
-    ballController.draw(ctx)   //This is to draw our ball
-    player1.draw(ctx)    //This is to draw the first player using the method of our class. He has a brown color.
-    // player2.draw(ctx)  //this is to draw the second player. He has a blue color
-    // goal.draw(ctx) 
-    
-  }
+//Defining player properties:
 
-  setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second.
+const playerOne = {
+    Name: 'player1',
+    totalScore: 0
+  };
+const playerTwo = {
+    Name: 'Player2',
+    totalScore: 0
+  };
 
-  class Goal {     //I was thinking hard and thought that instead of creating a moving goal with translation animation over an image, it would give more sense to draw the goal on the canvas and put it on the x-y coordinate system so that I can track the score.
-    constructor (x, y, points) {
-     
-      this.x = x
-      this.y = y
-      this.velocity = 1
-      this.width = 70     // This is for width of the goal.
-      this.height = 50
-      this.update = function() {   //This update function will serve to increase the speed when the game goes to next level.
-        this.draw(ctx)      
-      }
-      this.points = 0
- 
-    }
-    
-  
-    //Below is to draw the goal with an image.
-    draw(ctx) {      
-      const img = new Image()
-      img.src = "goal.jpg"
-      ctx.drawImage(img, this.x, this.y, this.width, this.height)
-      
-    }
-    
+//Grabbing player's scores:
 
-    move() {
-      this.x = this.x + this.velocity
-      if ((this.x >= 400-this.width) ||  //Here, this is for the goal going to the right and reached boundary of the green canvas
-      (this.x < 0 )) {        //Here, this is for the goal going to the left and reached boundary of the green canvas
-        this.velocity = -this.velocity         //Here to invert the direction of the goal
+const p1Score = document.querySelector('#p1-score')
+const p2Score = document.querySelector('#p2-score')
+p1Score.style.color = 'brown'
+p2Score.style.color = 'blue'
+console.log(p1Score)
+
+//Game Start function
+
+function startGame() {          //It is to be noted here that the start button cannot be interchangeably used with the reset button because reset is applicable only when the scores are less than or equal to 5 while the start game button is applicable when the game starts i.e all scores are 0 or when teh game is over i.e when one of the players' score is 10.
         
-      }  
-                 
+  document.querySelector('#startGame').addEventListener('click', function () {
+    if(playerOne.totalScore <= 0 && playerTwo.totalScore <= 0) {
+      alert('Welcome to Kick at Moving Goal Game. Enjoy!')
+    } if(playerOne.totalScore >=10 || playerTwo.totalScore >= 10) {
+      alert('Welcome to Kick at Moving Goal Game. Enjoy!')
+      playerOne.totalScore = 0
+      p1Score.innerHTML = 0
+      playerTwo.totalScore = 0
+      p2Score.innerHTML = 0
     }
-       
-  }
+  })  
+    
+}
+  
+startGame()
+
+//To reset the game:
+
+function resetGame() {
+
+  document.querySelector('#reset').addEventListener('click', function () {
+    
+    if(playerOne.totalScore <= 5 && playerTwo.totalScore <= 5) {
+      alert('Game is reset to start from beginning.')
+      
+      playerOne.totalScore = 0
+      p1Score.innerHTML = 0
+      playerTwo.totalScore = 0
+      p2Score.innerHTML = 0
+    }
+    return false
+  })  
+}
+resetGame()
+
+//To enable selectionby players to go to next level one a game is over:
+
+function nextLevel () {
+  document.querySelector('#next').addEventListener('click', function () {
+    if(playerOne.totalScore >=10 || playerTwo.totalScore >= 10) {
+
+    }
+
+  })
+}
+
+
+  //To move the goal sideways:
 
   let goal;
   function init(){       //init is shorthand writing of initialize
-    goal = new Goal(canvas.width / 90, canvas.height / 23)
+    goal = new Goal(canvas.width / 90, canvas.height/900, 1.2)
   }
 
   function animate() {
-    requestAnimationFrame(animate)    //This makes animation effect on the method move.
-    goal.move()
-    goal.update()
-    // if (balls.x >= goal.x && balls.x + balls.radius <= goal.x + goal.width) {
-    //   this.points += 1
-    // }
-
+    requestAnimationFrame(animate)    //This makes animation effect on the method move invoked below.
+    goal.move()  
+    
   }
 
   init()
   animate()
 
+//THE GAMELOOP - The ENGINE for the game: Draws the ball, the players, and the goal on canvas; Tracks score of each player: 
 
-  
+  const gameLoop = () => {    
+    ctx.fillStyle = "green"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
+    ballController.draw(ctx)   //This is to draw our ball
+    ballController.isBallOffScreen(ctx)
+    player1.draw(ctx)    //This is to draw the first player using the method of our class. He has a brown color.
+    // player2.draw(ctx)  //this is to draw the second player. He has a blue color.
+    goal.draw(ctx)
 
-  class Score {
-     constructor(x, y, points) {
-      this.x = x
-      this.y = y
-      this.points = 0
-    
-      this.draw = function() {
-        c.font = '30px Helvetica'
-        c.fillStyle = '#000'
-        c.fillText(points, this.x, this.y)
-      }
-    
-      this.update = function() {
-        if (balls.x >= goal.x && balls.x + balls.radius <= goal.x + goal.width) {
-          this.points += 1
-        }
-        this.draw()
-      }
-     }
-
+    let scoreOne = 0
+    let scoreTwo = 0
+    const scoringOfResults = (sprite) => {
+      if (ballController.collideWith(sprite)) {
+        scoreOne += 1
+        scoreTwo += 1
+        playerOne.totalScore += scoreOne
+        p1Score.innerHTML = playerOne.totalScore 
+        // playerTwo.totalScore += scoreTwo
+        // p2Score.innerHTML = playerTwo.totalScore        
+      }     
+    }  
+    scoringOfResults(goal)    
   }
 
-  const score = new Score(x, y, points)
+  setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second.
 
-  //To create a clock that counts down from 5 seconds and stop each player from kicking the ball and turning the chance to the other player:
-
-  // let timeElm = document.querySelector('#p1-score')
-  // let timer = (t) => {
-  //   if (t === 0) {
-  //     return
+  
+  
+  // To make turn for each player:
+  
+  //   function playerControls(e) {
+  //     let currentPlayer
+  //     currentPlayer = player1
+  //     e.target.textContent = currentPlayer.totalScore;
+  //     if (currentPlayer === player1) {
+  //       currentPlayer = player2
+  //       e.target.textContent = currentPlayer.totalScore
+  //     } else {
+  //       currentPlayer = player1
+  //       e.target.textContent = currentPlayer.totalScore
+  //     }
   //   }
-  //   timeElm.innerHTML = t
-  //   return setTimeout(() => {
-  //     timer(--t)
-  //   }, 1000)        //Here, I give the setTimeout of 1000ms for reducing the time.
-  // }
-  // timer(5)
-
-
-
-  // const startGame = document.querySelector('#startGame')
-  // startGame.addEventListener('click', animate)
-
-  // class Ball {
-  //   constructor(moveUp, moveDown, score) {
-  //     this.moveUp = moveUp
-  //     this.moveDown = moveDown
-  //     this.score = score
+  
+  //   return {
+  //     playerControls
   //   }
-  //   inGoal() {
-  //     return this.score
-  //   }
+  // })
+  // playGame();
 
 
-  // }
+  //Win scenario:
+
+  const resultDisplay = document.querySelector('#gameResult')
+  const endOfGame = () => {
+    if (playerOne.totalScore >= 10 && playerTwo.totalScore < 10){      
+       resultDisplay.innerHTML = 'Congratulations Player 1! <br> You won the Game!'
+      startGame()
+      nextLevel()
+    } else {
+      return false      //This stops the infinite loop of popping alert.
+    }         
+       
+  
+    if (playerTwo.totalScore >= 10 && playerOne.totalScore < 10){
+      resultDisplay.innerHTML = 'Congratulations Player 2! <br> You won the Game!'
+      startGame()
+      nextLevel()
+    } else {
+      return false
+    }      
+  
+    if (playerOne.totalScore >= 10 && playerTwo.totalScore >= 10){
+      resultDisplay.innerHTML = 'It is a tie. no one wins.'
+      startGame()
+      nextLevel()
+    } else {
+      return false
+    }      
+  }
+  endOfGame()
 
 
-
-
-
-// }
 
 // Adding Levels:
-
 
 // window.addEventListener('load', init,);
 // const levels = {
@@ -206,16 +219,42 @@ import Player1 from "./player1.js"
 
 
 
-//To reset game:
+  //To create a clock that counts down from 5 seconds and stop each player from kicking the ball and turning the chance to the other player:
 
-/*function resetGame(){
-  const resetBtn = document.getElementById('reset')
-  resetBtn.onclick = function() {
-      let time = currentLevel;
-      let score = 0;
-      let isPLaying;   //Show number of seconds
-  }
-}*/
+  // let timeElm = document.querySelector('#p1-score')
+  // let timer = (t) => {
+  //   if (t === 0) {
+  //     return
+  //   }
+  //   timeElm.innerHTML = t
+  //   return setTimeout(() => {
+  //     timer(--t)
+  //   }, 1000)        //Here, I give the setTimeout of 1000ms for reducing the time.
+  // }
+  // timer(5)
+
+// TIMER LOGIC
+
+// const startingMinutes = .25
+// let time = startingMinutes * 60
+// let timerId
+// let square
+
+// function countDown() {
+
+//   let minutes = Math.floor(time / 60)
+//   let seconds = time % 60
+//   time--
+//   console.log(minutes, 'minutes:', seconds, 'seconds')
+
+
+//   if (time <= 0) {
+//     checkForWin()
+//     gameOver()
+//   }
+
+//   countdown.innerHTML = minutes + ' minutes ' + ': ' + seconds + ' seconds '
+// }
 
 // Countdown timer:
 
@@ -243,5 +282,4 @@ import Player1 from "./player1.js"
 //       score = -1;
 //   }
 // }
-
 

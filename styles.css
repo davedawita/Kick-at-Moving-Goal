@@ -59,19 +59,20 @@ h1 {
 
 }
 
-/* #Goal {
-  margin: -390px 2200px 0 755px;  */
-  /* I need to create moving goal. It is to be noted that that the goal is moving only in x-direction. */
-  /* position: relative;
+
+/* FYI - Below is the first trial that made the goal move sideways. But, since it didn't have any x-y reference, the task was done in Javascript by defining animate function.
+
+  #Goal {
+  margin: -390px 2200px 0 755px;
+  position: relative;
   animation-name: movingGoal;
   animation-duration:7s;
   animation-iteration-count: infinite;
   animation-timing-function: linear; 
   animation-delay: 0s; 
-} */
+} 
 
-
-  /* @keyframes movingGoal {
+  @keyframes movingGoal {
   0% {right:0%;}
   15% {right: 24%;}
   25% {right: 24%;}
@@ -113,20 +114,20 @@ h1 {
   background-color: white;
   padding: 5px 7px 10px 7px;
   margin: 0 150px 0 -7px;
-  width: 50px;
+  width: 40px;
   position: absolute;
   top: 320px;
-  left:330px;
+  left:347px;
 }
 
 #p2-score {
   background-color: white;
   padding: 5px 7px 10px 7px;
   margin: 0 150px 0 -7px;
-  width: 50px;
+  width: 40px;
   position: absolute;
   top: 400px;
-  left:330px;
+  left:347px;
 }
 
 #next {  
@@ -210,14 +211,14 @@ img {
 
 .modalContainer {
   position: fixed;
-  top:0;
+  top:8px;
   left:0;
   background-color: rgba(77, 61, 61, 0.8);
   margin: 105px 25px 50px 860px;
   width: 210px;
   opacity:0;
   pointer-events: none;
-  font-size: 12px;
+  font-size: 11px;
 
 }
 
@@ -228,6 +229,27 @@ img {
 
 ul {
   margin: 20px 10px 5px -20px;
+}
+
+#gameResult {
+  position:absolute;
+  top: 500px;
+  left: 450px;
+  color: greenyellow;
+  font-size: 30px;
+  font-weight:900;
+  animation-name: blinking;
+  animation-duration:7s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+} 
+
+@keyframes blinking {
+  25% {color: yellow;}
+  50% {color: blue;}
+  75% {color: black;}
+  100% {opacity:20;}
 }
 
 
