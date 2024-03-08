@@ -40,7 +40,7 @@ MVP (Minimum Viable Product) Goals
   
 Troubleshooting
 
-Please click the reset button to restart the game. If any player wants to reset the game and to interchangeable use the 'Start Game' button, it will not work. The purpose of the reset button is to enable that functionality.
+Please click the reset button to restart the game. If any player wants to reset the game and to interchangeable use the 'Start Game' button, it will not work. The purpose of the reset button is to enable that functionality. If you need to go back to the lower or first level, refresh your browser.
 
 Forthcoming Features
 
