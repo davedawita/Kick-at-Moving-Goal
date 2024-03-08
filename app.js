@@ -69,7 +69,7 @@ function startGame() {          //It is to be noted here that the start button c
   
 startGame()
 
-//To reset the game:
+//To RESET the game:
 
 function resetGame() {
 
@@ -88,33 +88,41 @@ function resetGame() {
 }
 resetGame()
 
-//To enable selectionby players to go to next level one a game is over:
-
-function nextLevel () {
-  document.querySelector('#next').addEventListener('click', function () {
-    if(playerOne.totalScore >=10 || playerTwo.totalScore >= 10) {
-
-    }
-
-  })
-}
 
 
-  //To move the goal sideways:
+  //To MOVE THE GOAL sideways:
 
   let goal;
   function init(){       //init is shorthand writing of initialize
-    goal = new Goal(canvas.width / 90, canvas.height/900, 1.2)
+    goal = new Goal(canvas.width / 90, canvas.height/900, 1.6)
   }
 
   function animate() {
     requestAnimationFrame(animate)    //This makes animation effect on the method move invoked below.
-    goal.move()  
-    
+    goal.move()      
   }
 
   init()
   animate()
+
+//NEXT LEVEL - Enable selection by players to go to next level (with increased speed of goal) once a game is over:
+
+function nextLevel () {
+  document.querySelector('#next').addEventListener('click', function () {
+    if(playerOne.totalScore >=10 || playerTwo.totalScore >= 10) {
+      alert('You choose the second and last level of the game.')
+      goal.speed(3) 
+      playerOne.totalScore = 0          //Here, I thought to put the startGame(). However, once the game started, the next level should not be taken as starting a new game. But, I make the scores to start from zero for the next level as the winning score of the game is 10.
+      p1Score.innerHTML = 0
+      playerTwo.totalScore = 0
+      p2Score.innerHTML = 0
+    }
+    return false
+  })
+}
+nextLevel()
+
+
 
 //THE GAMELOOP - The ENGINE for the game: Draws the ball, the players, and the goal on canvas; Tracks score of each player: 
 
@@ -143,8 +151,6 @@ function nextLevel () {
   }
 
   setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second.
-
-  
   
   // To make turn for each player:
   
@@ -168,7 +174,7 @@ function nextLevel () {
   // playGame();
 
 
-  //Win scenario:
+  //WIN scenario:
 
   const resultDisplay = document.querySelector('#gameResult')
   const endOfGame = () => {
@@ -272,14 +278,4 @@ function nextLevel () {
 //   timeDisplay.innerHTML = time;
 // }
 
-//How to check Game status and winner scenario:
-
-// //Check game Status
-// function checkStatus() {
-
-//   if(!isPLaying && time === 0){
-//       message.innerHTML = 'Game Over!!';
-//       score = -1;
-//   }
-// }
 

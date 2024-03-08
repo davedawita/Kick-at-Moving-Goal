@@ -22,7 +22,7 @@ export default class BallController {
     this.balls.forEach((ball) => {
       if(this.isBallOffScreen(ball)) {
         const index = this.balls.indexOf(ball)   
-        this.balls.splice(index,1)              //We need to remove off screen balls to make the code work.
+        this.balls.splice(index,1)              //We need to remove off-Screen balls to make the code work.
     
       }
       ball.draw(ctx)   //This is a loop to show the ball at certain time interval with certain speed and at certain location (x,y). This is to move the ball towards the goal.})

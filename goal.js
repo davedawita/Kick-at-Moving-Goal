@@ -34,6 +34,10 @@ export default class Goal {     //I was thinking hard and thought that instead o
   recordScore() {
     this.score += 1
   }
+
+  speed(velocity) {                     //This is added for the purpose of changing game levels by increasing velocity of moving goal.
+    this.velocity = velocity
+  }
      
 }
 

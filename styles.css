@@ -185,7 +185,7 @@ img {
 .modal {  
   background-color: rgb(66, 51, 39, 0.7);
   width: 210px;
-  height: 260px;
+  height: 265px;
   color: white;
   border-radius: 5px;
   display: flex;
@@ -201,7 +201,7 @@ img {
   position: absolute;
   top: 2px;
   right: 5px;
-  bottom: 240px;  
+  bottom: 245px;  
 }
 
 .closeBtn:hover {
