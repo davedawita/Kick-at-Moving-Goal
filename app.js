@@ -32,16 +32,16 @@ import Goal from "./goal.js"          //Same as above.
 
 //Defining player properties:
 
-const playerOne = {
+let playerOne = {
     Name: 'player1',
     totalScore: 0
   };
-const playerTwo = {
+let playerTwo = {
     Name: 'Player2',
     totalScore: 0
   };
 
-//Grabbing player's scores:
+//Grabbing player's score elements from HTML:
 
 const p1Score = document.querySelector('#p1-score')
 const p2Score = document.querySelector('#p2-score')
@@ -121,7 +121,6 @@ function nextLevel () {
 nextLevel()
 
 
-
 //THE GAMELOOP - The ENGINE for the game: Draws the ball, the players, and the goal on canvas; Tracks score of each player: 
 
   const gameLoop = () => {    
@@ -131,87 +130,122 @@ nextLevel()
     ballController.draw(ctx)   //This is to draw the ball
     ballController.isBallOffScreen(ctx)
     goal.draw(ctx)      //This is to draw the goal on canvas.
-
-    // To make turn for each player:
-
-    
+    player2.draw(ctx)    //this is to draw the second player. He has a blue color.
     player1.draw(ctx)    //This is to draw the first player using the method of our class. He has a brown color.
-    
 
-    // let currentPlayer = playerOne 
-    // e.target.textContent = currentPlayer.totalScore   //Here, I searched and found that evt.target is a reference to the object onto which the event was dispatched. https://developer.mozilla.org/en-US/docs/Web/API/Event/target
+    // let currentPlayer = player1     //This shows that playerOne starts the game.
     
-    // const playersTurn = (e) => {
-    //   if(currentPlayer === playerOne) {
-    //     currentPlayer === playerTwo        
-    //     evt.target.textContent = currentPlayer.totalScore 
+  
 
-    //   } else {
-    //   player2.draw(ctx)  //this is to draw the second player. He has a blue color.
-    //     currentPlayer === playerOne
-    //     e.target.textContent = currentPlayer.totalScore
-    //   }
-    // }
-    // playersTurn()   
-    
-    //To record score of each player & activate taking turns between players:
+
+    //To RECORD SCORE of players with taking turns between them:
    
     let scoreOne = 0
     let scoreTwo = 0
-    let currentPlayer = playerOne               //This shows that playerOne starts the game.
-    const scoringOfResults = (sprite) => {
-      if (ballController.collideWith(sprite) && currentPlayer === playerOne) {
-        timer(5)    //This is to trigger the 5 second timer before the first kick
+    
+    let currentPlayer = player1
+
+    const scoringOfResults1 = (sprite) => {
+      if ((ballController.collideWith(sprite) && currentPlayer === player1)) {
+        timer(5)    //This is to trigger the 5 second timer 
         scoreOne += 1        
         playerOne.totalScore += scoreOne
-        p1Score.innerHTML = playerOne.totalScore
-         
-                       
-      } if (ballController.collideWith(sprite) && currentPlayer === playerTwo) {
-          timer(5)     //This is to run the 5 second timer only after the first player kicks the ball.
-          player2.draw(ctx)  //this is to draw the second player. He has a blue color.
-          scoreTwo += 1
-          playerTwo.totalScore += scoreTwo
-          p2Score.innerHTML = playerTwo.totalScore 
-        } else {
-          // timer(5)
-        }  
+        p1Score.innerHTML = playerOne.totalScore           
       }
-    
-    scoringOfResults(goal)    
-  }
+    } 
+    scoringOfResults1(goal)
 
-  setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second.
+    const scoringOfResults2 = (sprite) => {
+      if ((ballController.collideWith(sprite) && currentPlayer === player2)) {
+        timer(5)    //This is to trigger the 5 second timer after score
+        scoreTwo += 1        
+        playerTwo.totalScore += scoreTwo
+        p2Score.innerHTML = playerTwo.totalScore           
+      }      
+    }
+    scoringOfResults2(goal)
+
+    
+    // To MAKE TURN for each player: 
+    
+    
+    const playerTurns = () => {
+      if(currentPlayer === player1) {
+        if(player1.shoot()) {
+          
+          currentPlayer === player2              //After player1 shoots the ball, make turn for player2 
+          
+        } else {
+              if(currentPlayer === player2) {        
+                if(player2.shoot()) {
+            
+                  currentPlayer === player1
+            
+                }         
+              }        
+          }
+      }
+      playerTurns()
   
+ 
+    // let turn = true
+
+    // function makeTurns() {
+    //   if (turn) {
+    //   turn = false
+    //   return playerOne.totalScore
+    //   } else {
+    //   turn = true
+    //   return playerTwo.totalScore
+    //   }
+    // }
+    // makeTurns()
+
+    
+
+    // e.target.textContent = currentPlayer.totalScore   //Here, I searched and found that evt.target is a reference to the object onto which the event was dispatched. https://developer.mozilla.org/en-US/docs/Web/API/Event/target
+
+    // const playersTurn = (e) => {
+    //   if(currentPlayer == player1) {
+    //     return currentPlayer == player2        
+    //     e.target.textContent = currentPlayer.totalScore 
+
+    //   } else {
+    //   // player2.draw(ctx)  //this is to draw the second player. He has a blue color.
+    //     return currentPlayer == player1
+    //     e.target.textContent = currentPlayer.totalScore
+    //   }
+    // }
+    // playersTurn()  
+    // }
+    }
+}
+ 
+
+setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second
+
+
   //WIN scenario:
 
   const resultDisplay = document.querySelector('#gameResult')
   const endOfGame = () => {
     if (playerOne.totalScore >= 10 && playerTwo.totalScore < 10){      
-       resultDisplay.innerHTML = 'Congratulations Player 1! <br> You won the Game!'
-      startGame()
-      nextLevel()
-    } else {
-      return false      //This stops the infinite loop of popping alert.
-    }         
-       
-  
-    if (playerTwo.totalScore >= 10 && playerOne.totalScore < 10){
+      resultDisplay.innerHTML = 'Congratulations Player 1! <br> You won the Game!'
+      console.log(playerOne.totalScore)
+      // startGame()
+      // nextLevel()
+    } else if (playerTwo.totalScore >= 10 && playerOne.totalScore < 10){
       resultDisplay.innerHTML = 'Congratulations Player 2! <br> You won the Game!'
-      startGame()
-      nextLevel()
-    } else {
-      return false
-    }      
-  
-    if (playerOne.totalScore >= 10 && playerTwo.totalScore >= 10){
+      console.log(playerTwo.totalScore)
+      // startGame()
+      // nextLevel()    
+     if (playerOne.totalScore >= 10 && playerTwo.totalScore >= 10){
       resultDisplay.innerHTML = 'It is a tie. no one wins.'
-      startGame()
-      nextLevel()
-    } else {
-      return false
-    }      
+      // startGame()
+      // nextLevel()
+    } 
   }
+}
   endOfGame()
 
 
@@ -228,6 +262,5 @@ nextLevel()
     }, 1000)        //Here, I give the setTimeout of 1000ms for reducing the time.
   }
   timer(5)
-
 
 

@@ -267,10 +267,10 @@ ul {
   }
   
   #startGame {
-        font-size: 15px;
+    font-size: 15px;
     position: absolute;
     top: 55px;
-    left: -180px;
+    left: -170px;
     border-radius: 10px;
   }
   
@@ -296,24 +296,22 @@ ul {
   #Goal {
     width: 70px;
     height: 40px;
-    position: relative;
+    position: absolute;
+    top: 12px;
+    left: -200px;
     color: white;
-    margin: -290px 95px 40px 175px;
+    /* margin: -290px 95px 40px 175px; */
 
   }
   
-  #playField {
+ 
+  #canvas {
     background-color: green;  
-    width: 230px;
-    height: 300px;
-    margin: -25px 400px 0 435px;
-    Position: relative;
-    top: 30px;
-    left:-340px;
-    right: 300px;
+    width: 220px;
+    height: 250px;
+    margin: 20px 300px 100px 100px;  
   
   }
-  
    
   #p1 {    
     margin: 20px 800px 300px 200px;
@@ -363,28 +361,31 @@ ul {
     font-size: 12px;
     font-weight: 600;
     position:absolute;
-    top: 395px;
-    right: 10px;  
+    top: 350px;
+    right: 10px; 
+    bottom: 550px 
     padding: 5px 10px 5px 10px;
   }
   
   #reset{
     font-size: 12px;
     position:absolute;
-    top: 350px;
-    bottom: 550px;
-    right: 10px;
-    margin:0 10px 0 -220px;
-    padding: 5px 10px 5px 10px;
+    margin:0 10px 100 -100px;
+    /* padding: 5px 10px 5px 10px; */
+    top: 300px;
+    right: 10px; 
+    bottom: 630px;
   }
   
-  #show-hide {
+  #showHide {
     font-size: 12px;
-    position:absolute;
-    top: 130px;
-    bottom: 760px;
-    right: 10px;
+    position:absolute;   
+    top: 90px;
     left: 340px;
+    right: 15px;
+    bottom: 800px;   
+
+    
   }
 }
 

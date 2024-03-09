@@ -1,3 +1,4 @@
+
 export default class Player1 {
   constructor(x,y,ballController) {
     this.x = x
@@ -88,7 +89,8 @@ export default class Player1 {
     }
 
   }
-
+  
 }
+
 
 

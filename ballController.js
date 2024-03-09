@@ -31,7 +31,7 @@ export default class BallController {
   }   
 
   isBallOffScreen(ball) {
-      return ball.y <= -ball.height     //I need to remove the ball after it passes top edge of the green canvas.
+      return ball.y <= -ball.height     //I need to remove the ball after it passes the top edge of the green canvas.
     }
 
   
