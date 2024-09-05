@@ -8,7 +8,8 @@ export default class Player1 {
     this.height = 30    // This is for the height of a player.
     this.speed = 4      
     this.radius = 10    // This is for the round head of a player.
-
+    this.name = 'player1'
+    this.totalScore= 0
     document.addEventListener("keydown", this.keydown)
     document.addEventListener("keyup", this.keyup)   
         
@@ -73,7 +74,7 @@ export default class Player1 {
       const ballX = this.x + this.width/2  //This is to fix postion of ball before each kick.
       const ballY = this.y + this.height * 1.4              //This is to fix postion of ball before each kick.
       this.ballController.shoot(ballX,ballY,speed,delay)
-
+      
     }
   }    
  
@@ -89,6 +90,9 @@ export default class Player1 {
     }
 
   }
+
+  
+
   
 }
 

@@ -1,5 +1,5 @@
 import BallController from "./ballController.js" //This is to import from ballController.js file I created.
-import Player2 from "./player2.js"  //This is to import from player2.js file I created. Note that this import has to be here on top of teh module to be functional. Note also that the capital letter 'P" has to be caps to import the class properly.
+import Player2 from "./player2.js"  //This is to import from player2.js file I created. Note that this import has to be here on top of the module to be functional. Note also that the capital letter 'P" has to be caps to import the class properly.
 import Player1 from "./player1.js"   //Same as above.
 import Goal from "./goal.js"          //Same as above.
   
@@ -19,6 +19,32 @@ import Goal from "./goal.js"          //Same as above.
     modalContainer.classList.remove('show')
   })
 
+ 
+  // document.addEventListener("keyup", keyup) 
+
+  // keydown = (e) => {
+  //   if (e.code === "Space") {
+  //     if(currentPlayer === player1) {
+  //   //  this.shootPressed = true
+  //       player1.shoot()        
+  //       currentPlayer = player2
+  //     alert("Who is current player? It is: " + currentPlayer)
+  //   } else {
+  //     player2.shoot()
+  //     currentPlayer = player1
+  //   }
+   
+  // }
+  // }
+  
+  // keyup = (e) => {
+  //   if (e.code === "Space") {
+  //     // this.shootPressed = false
+  //   }
+  
+  // }
+
+
 //To draw the player on the canvas, I used class. I preferred to write the class code on another js file export it there and import it here.
   const canvas = document.querySelector("#canvas")
 
@@ -27,7 +53,7 @@ import Goal from "./goal.js"          //Same as above.
   canvas.height = 400   // Then, I go back to css and style the canvas.
 
   const ballController = new BallController(canvas)
-  const player1  = new Player1 (canvas.width / 2.2, canvas.height / 1.15, ballController) //Instantiating from the class-Player. Here, I am fixing the postion of player1 in relation to the canvas by dividing the canvas width and height by factors.
+  const player1  = new Player1 (canvas.width / 2.2, canvas.height / 1.15, ballController) //Instantiating from the class-Player. Here, I am fixing the position of player1 in relation to the canvas by dividing the canvas width and height by factors.
   const player2  = new Player2(canvas.width / 2.2, canvas.height / 1.15, ballController)  //Note that position of player1 and player2 on the play field (canvas) are the same.
 
 //Defining player properties:
@@ -51,7 +77,7 @@ console.log(p1Score)
 
 //Game Start function
 
-function startGame() {          //It is to be noted here that the start button cannot be interchangeably used with the reset button because reset is applicable only when the scores are less than or equal to 5 while the start game button is applicable when the game starts i.e all scores are 0 or when teh game is over i.e when one of the players' score is 10.
+function startGame() {          //It is to be noted here that the start button cannot be interchangeably used with the reset button because reset is applicable only when the scores are less than or equal to 5 while the start game button is applicable when the game starts i.e all scores are 0 or when the game is over i.e when one of the players' score is 10.
         
   document.querySelector('#startGame').addEventListener('click', function () {
     if(playerOne.totalScore <= 0 && playerTwo.totalScore <= 0) {
@@ -120,6 +146,7 @@ function nextLevel () {
 }
 nextLevel()
 
+let currentPlayer = player1
 
 //THE GAMELOOP - The ENGINE for the game: Draws the ball, the players, and the goal on canvas; Tracks score of each player: 
 
@@ -135,13 +162,12 @@ nextLevel()
 
     // let currentPlayer = player1     //This shows that playerOne starts the game.
     
-  
-
+    
 
     //To RECORD SCORE of players with taking turns between them:
    
     let scoreOne = 0
-    let scoreTwo = 0
+    let scoreTwo = 0 
     
     let currentPlayer = player1
 
@@ -157,6 +183,7 @@ nextLevel()
 
     const scoringOfResults2 = (sprite) => {
       if ((ballController.collideWith(sprite) && currentPlayer === player2)) {
+        player2.draw(ctx)
         timer(5)    //This is to trigger the 5 second timer after score
         scoreTwo += 1        
         playerTwo.totalScore += scoreTwo
@@ -164,42 +191,59 @@ nextLevel()
       }      
     }
     scoringOfResults2(goal)
-
+   
     
     // To MAKE TURN for each player: 
     
     
-    const playerTurns = () => {
-      if(currentPlayer === player1) {
-        if(player1.shoot()) {
+    // const playerTurns = () => {
+    //   if(currentPlayer === player1) {
+    //     if(player1.shoot()) {
           
-          currentPlayer === player2              //After player1 shoots the ball, make turn for player2 
-          
-        } else {
-              if(currentPlayer === player2) {        
-                if(player2.shoot()) {
-            
-                  currentPlayer === player1
-            
-                }         
-              }        
-          }
-      }
-      playerTurns()
-  
- 
-    // let turn = true
-
-    // function makeTurns() {
-    //   if (turn) {
-    //   turn = false
-    //   return playerOne.totalScore
-    //   } else {
-    //   turn = true
-    //   return playerTwo.totalScore
+    //       currentPlayer = player2              //After player1 shoots the ball, make turn for player2 
+    //       scoringOfResults1(goal)
+    //     } else {
+    //           if(currentPlayer === player2) {        
+    //             if(player2.shoot()) {
+                  
+    //               currentPlayer = player1 
+    //               scoringOfResults2(goal)
+    //             }         
+    //           }           
+    //       }
     //   }
     // }
-    // makeTurns()
+    // playerTurns() 
+
+    // const turn = (e) => {
+    //   if (playerTurn === false) {
+    //     playerTurn = true
+    //   } else {
+    //     playerTurn = false
+    //   }
+    // }
+    // turn()
+    
+  
+    
+    // let turn = true
+
+    
+      // if (turn) {           
+      //     // player1.draw(ctx)
+      //     player1.shoot()
+          
+      //     scoringOfResults1(goal)
+          
+      // } else {
+      //     // player2.draw(ctx)
+      //     player2.shoot()
+         
+      //     scoringOfResults2(goal) 
+          
+      // }      
+      //     turn = !turn
+  
 
     
 
@@ -217,12 +261,56 @@ nextLevel()
     //   }
     // }
     // playersTurn()  
+    // } 
     // }
-    }
-}
+  }
  
 
 setInterval(gameLoop, 1000/70)   // This fixes speed of the ball when kicked. Note:1000 millisecond is 1 second
+
+// document.addEventListener("keydown", function(e){
+//   if (e.code === "Space") {
+//     if(currentPlayer === player1) {
+//   //  this.shootPressed = true
+//       ballController.draw(ctx)
+//       player1.draw(ctx)  
+//       scoringOfResults1(goal)
+//       currentPlayer === player2
+      
+//     // alert("Who is current player? It is: " + currentPlayer.name)
+//   } else {
+//     player2.draw(ctx) 
+//     scoringOfResults2(goal)
+//     currentPlayer === player1
+//     // alert("Who is current player? It is: " + currentPlayer.name)
+
+//   }
+ 
+// }
+// })
+
+
+
+const scoringOfResults1 = (sprite) => {
+  if ((ballController.collideWith(sprite) && currentPlayer === player1)) {
+    // timer(5)    //This is to trigger the 5 second timer 
+    // scoreOne += 1        
+    player1.totalScore = player1.totalScore + 1
+    p1Score.innerHTML = player1.totalScore           
+  }
+} 
+scoringOfResults1(goal)
+
+const scoringOfResults2 = (sprite) => {
+  if ((ballController.collideWith(sprite) && currentPlayer === player2)) {
+    // timer(5)    //This is to trigger the 5 second timer after score
+    // scoreTwo += 1        
+    player2.totalScore = player2.totalScore + 1
+    p2Score.innerHTML = player2.totalScore           
+  }      
+}
+scoringOfResults2(goal)  
+
 
 
   //WIN scenario:

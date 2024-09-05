@@ -7,6 +7,9 @@ export default class Player2 {
     this.height = 30    // This is for the height of a player.
     this.speed = 4      
     this.radius = 10    // This is for the round head of a player.
+    this.name = 'player2'
+    this.totalScore= 0
+
 
     document.addEventListener("keydown", this.keydown)
     document.addEventListener("keyup", this.keyup)   

@@ -8,12 +8,12 @@ export default class BallController {
   }
   
   shoot(x,y,speed, delay, score) {      //Here, the variables are as defined in player.js under the shoot() method.
-    if(this.timerTillNextBall <=0  ) {
-      if(this.balls.length =1) {
+    // if(this.timerTillNextBall <=0  ) {
+      if(this.balls.length = 1) {
       this.balls.push(new Ball(x,y,speed, score)) //This ball that is pushed in to the empty array of balls is imported from the ball.js.
       }     
       this.timerTillNextBall = delay
-    }
+    // }
 
     this.timerTillNextBall--
   }
@@ -44,6 +44,8 @@ export default class BallController {
       return false    //If collision does not occur, false
     })
   }
+
+  
 
 }  
 

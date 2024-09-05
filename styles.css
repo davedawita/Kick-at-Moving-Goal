@@ -164,7 +164,8 @@ h1 {
 
 #showHide {  
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 600;
+  /* margin: 20px 900px 300px 100px; */
   position:absolute;
   padding: 5px auto;
   border-radius: 5px;
@@ -185,7 +186,7 @@ img {
 .modal {  
   background-color: rgb(66, 51, 39, 0.7);
   width: 210px;
-  height: 265px;
+  height: 310px;
   color: white;
   border-radius: 5px;
   display: flex;
@@ -201,7 +202,7 @@ img {
   position: absolute;
   top: 2px;
   right: 5px;
-  bottom: 245px;  
+  bottom: 285px;  
 }
 
 .closeBtn:hover {
@@ -257,7 +258,7 @@ ul {
 }
 
 
-@media (Max-width: 500px) {
+@media (Max-width: 400px) {
 
   h1 {
     font-size: 20px;    
@@ -307,7 +308,7 @@ ul {
  
   #canvas {
     background-color: green;  
-    width: 220px;
+    width: 230px;
     height: 250px;
     margin: 2px 330px 100px 80px;  
   
@@ -360,33 +361,68 @@ ul {
   #next {
     font-size: 12px;
     font-weight: 600;
-    position:absolute;
+    position:relative;
     top: 330px;
-    right: 60px;
-    left: 310px; 
-    bottom: 560px; 
+    right: 250px;
+    left: 340px; 
+    bottom: 540px; 
     padding: 5px 10px 5px 10px;
   }
   
-  #reset{
+  #reset {
     font-size: 12px;
     position:absolute;
     margin:0 10px 100 -100px;
-    /* padding: 5px 10px 5px 10px; */
-    top: 300px;
-    right: 50px; 
-    bottom: 630px;
+    padding: 10px 13px 10px 13px;
+    top: 140px;
+    right: -20px;
+    left: 500px; 
+    bottom: 630px; 
+    /* display:flexbox;   */
+    
   }
   
   #showHide {
-    font-size: 12px;
+    font-size: 11px;
     position:absolute;   
-    top: 90px;
-    left: 310px;
-    right: 50px;
-    bottom: 800px;   
-
-    
+    top: 80px;
+    /* left: 325px; */
+    right: 5px;
+    bottom: 820px;    
   }
 }
 
+@media (Max-width: 1800px) {
+  #next {
+    font-size: 12px;
+    font-weight: 600;
+    position:relative;
+    top: 420px;
+    right: 600px;
+    left: 880px; 
+    bottom: 540px; 
+    padding: 5px 10px 5px 10px;
+  }
+  
+  #reset {
+    font-size: 12px;
+    position:relative;    
+    padding: 7px 10px 7px 10px;
+    top: 370px;
+    right: 2000px;
+    left: 950px; 
+    bottom: 420px; 
+    /* display:flexbox;   */
+    
+  }
+  
+  #showHide {
+    font-size: 11px;
+    position:relative;  
+    padding: 10px 5px 10px 5px;
+    top: 20px;
+    left: 850px;
+    right: 120px;
+    bottom: 190px;    
+  }
+}
